@@ -1,0 +1,180 @@
+/* styles.css */
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #495057;
+    border-radius: 4px;
+    background-color: #343a40;
+    color: #ffffff; /* Texto en blanco */
+    appearance: none; /* Elimina la apariencia nativa del sistema operativo */
+    cursor: pointer;
+}
+
+select:hover {
+    border-color: #777; /* Cambia el color del borde al pasar el mouse */
+}
+
+/* Estilo para el botón dentro del formulario (puedes ajustarlo según tus necesidades) */
+
+form button {
+    background-color: #555;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block; /* Alinea el botón con los demás elementos del formulario */
+    transition: background-color 0.3s ease-in-out; /* Agrega transición al color de fondo */
+}
+
+form button:hover {
+    background-color: #777;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #282c35;
+    color: #fff; /* Cambiado a blanco */
+}
+
+h1, h2, label, input, button, li {
+    color: #fff; /* Cambiado a blanco */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ced4da;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #495057;
+    border-radius: 4px;
+    background-color: #343a40;
+    color: #fff; /* Cambiado a blanco */
+}
+
+button {
+    background-color: #555;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #777;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    border-bottom: 1px solid #495057;
+    padding: 15px 0;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #555;
+    color: #fff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #777;
+}
+
+.actions a {
+    color: #007bff; /* Azul brillante */
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.actions a:hover {
+    color: #0056b3; /* Azul más oscuro al pasar el mouse */
+}
+
+.boton-editar {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.boton-imprimir {
+    background-color: #000000; /* Cambia este color según tu preferencia */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.boton-imprimir:hover {
+    background-color: #777; /* Cambia este color según tu preferencia */
+}
+
+.boton-eliminar {
+    background-color: #f44336; /* Rojo */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.acciones-botones {
+    display: flex;
+    gap: 5px; /* Espacio entre los botones */
+}
+
+.habitacion-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    display: inline-block;
+}
+

@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #2c3e50; /* Cambia este color según tus preferencias */
+}
+
+.login-container {
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #fff; /* Texto blanco para mayor contraste */
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+h2 {
+    color: #fff; /* Texto blanco para mayor contraste */
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #ddd; /* Color de texto más claro */
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db; /* Azul suave para botón */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9; /* Cambia el color al pasar el ratón para indicar interactividad */
+}

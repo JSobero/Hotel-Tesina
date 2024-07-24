@@ -1,0 +1,94 @@
+/* Reset de márgenes y fuente principal */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #282c35;
+}
+
+li.sidebar {
+    border-bottom: 1px solid #495057;
+    padding: 0px;
+}
+
+/* Estilos para el título principal */
+h1 {
+    color: #fff;
+}
+
+/* Estilos para la barra lateral */
+.sidebar {
+    min-width: 200px; /* Ancho mínimo */
+    width: 10%; /* Porcentaje del ancho del contenedor principal */
+    /*max-width: 250px; /* Ancho máximo opcional */
+    background-color: #333;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*box-sizing: border-box; /* Incluir padding y border en el ancho total */
+}
+
+/* Estilos para el logo */
+.logo {
+    text-align: center; /* Centrar el contenido en el área del logo */
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.logo h2 {
+    color: #fff;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+/* Estilos para la información del usuario */
+.user-info {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilos para las categorías en la barra lateral */
+.categories ul {
+    list-style: none;
+    padding: 0;
+}
+
+.categories li {
+    margin-bottom: 10px;
+}
+
+.categories a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #555;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.categories a i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* Estilos para el hover de las categorías en la barra lateral */
+.categories a:hover {
+    background-color: #777;
+}
+
+/* Estilos para el contenido principal */
+.content {
+    flex-grow: 1; /* Permitir que el contenido crezca para llenar el espacio restante */
+    box-sizing: border-box; /* Incluir padding y border en el ancho total */
+    padding: 20px;
+    overflow: auto; /* Agregar desplazamiento vertical si es necesario */
+}
