@@ -30,7 +30,7 @@ if (isset($_GET['logout'])) {
         <h2>Serenia Oasis</h2>
     </div>
     <div class="user-info">
-        <p>Bienvenido, <?= $_SESSION['nombre_usuario']; ?></p>
+        <p>Bienvenido, <?= htmlspecialchars($_SESSION['nombre_usuario']); ?></p>
     </div>
     <div class="categories">
         <ul>
