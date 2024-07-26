@@ -19,6 +19,7 @@ if (isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/stylesIndex.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Sistema de Hotel</title>
 </head>
 <body>
@@ -45,7 +46,7 @@ if (isset($_GET['logout'])) {
                 echo "<li class='sidebar'><a href='indexHotel.php?page=personal'><i class='material-icons'>diversity_3</i> Personal</a></li>";
             }
             ?>
-            <li class='sidebar'><a href="?logout=1"><i class="material-icons">exit_to_app</i> Cerrar Sesión</a></li>
+            <li class='sidebar'><a href="?logout=1" id="logout-link"><i class="material-icons">exit_to_app</i> Cerrar Sesión</a></li>
         </ul>
     </div>
 </div>
@@ -86,5 +87,29 @@ if (isset($_GET['logout'])) {
     ?>
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutLink = document.getElementById("logout-link");
+
+    logoutLink.addEventListener("click", function(event) {
+        event.preventDefault(); // Prevenir el enlace por defecto
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cerrar sesión?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cerrar sesión',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirigir al logout
+                window.location.href = "?logout=1";
+                
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

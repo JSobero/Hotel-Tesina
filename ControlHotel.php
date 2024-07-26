@@ -16,7 +16,7 @@ class ClaseHotel{
     //CONSTRUCTOR
 
     function __construct($db){
-        $this->cn=mysqli_connect("localhost:3307","root","",$db);
+        $this->cn=mysqli_connect("localhost:3306","root","",$db);
         $this->clientes=new ClaseClientes($this->cn);
         $this->clientes->iniciarClientes();
         $this->personal=new ClasePersonal($this->cn);

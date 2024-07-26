@@ -1,6 +1,6 @@
 <?php
 // Establecer conexión a la base de datos (reemplaza con tus propios datos)
-$servername = "localhost:3307";
+$servername = "localhost:3306";
 $username = "root";
 $password = "";
 $dbname = "bd_hotel";
@@ -23,6 +23,9 @@ $stmt->bind_param("s", $dni);
 $stmt->execute();
 $result = $stmt->get_result();
 
+echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
+echo '<script>';
+echo 'document.addEventListener("DOMContentLoaded", function() {';
 if ($result->num_rows > 0) {
     // Existe un registro con el DNI proporcionado
     $row = $result->fetch_assoc();
@@ -36,18 +39,38 @@ if ($result->num_rows > 0) {
         $_SESSION['nombre_usuario'] = $row['nombres'];
 
         // Mostrar notificación de inicio de sesión exitoso
-        echo "<script>alert('Inicio de sesión exitoso'); window.location.href = 'indexHotel.php';</script>";
-        exit();
+        echo "Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión exitoso',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            window.location.href = 'indexHotel.php';
+        });";
     } else {
         // Contraseña incorrecta
-        echo "<script>alert('Contraseña incorrecta'); window.location.href = 'indexLogin.php';</script>";
-        exit();
+        echo "Swal.fire({
+            icon: 'error',
+            title: 'Contraseña incorrecta',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            window.location.href = 'indexLogin.php';
+        });";
     }
 } else {
     // No se encontró ningún registro con el DNI proporcionado
-    echo "<script>alert('Usuario no encontrado'); window.location.href = 'indexLogin.php';</script>";
-    exit();
+    echo "Swal.fire({
+        icon: 'error',
+        title: 'Usuario no encontrado',
+        showConfirmButton: false,
+        timer: 1500
+    }).then(() => {
+        window.location.href = 'indexLogin.php';
+    });";
 }
+echo '});';
+echo '</script>';
 
 // Cerrar la conexión a la base de datos
 $stmt->close();
