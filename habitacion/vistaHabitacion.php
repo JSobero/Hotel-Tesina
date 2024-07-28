@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Habitaciones</title>
     <link rel="stylesheet" type="text/css" href="css/stylesClientes.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <h1>Lista de Habitaciones</h1>
@@ -50,11 +51,30 @@
             <p>Disponibilidad: <?php echo $habitacion['disponibilidad']; ?></p>
             
             <!-- Botón Cambiar Disponibilidad -->
-            <form action="indexHotel.php?page=habitacion" method="post">
+            <form action="indexHotel.php?page=habitacion" method="post" class="form-cambiar-disponibilidad">
                 <input type="hidden" name="habitacion_id" value="<?php echo $habitacion['habitaciones_id']; ?>">
-                <button type="submit">Cambiar Disponibilidad</button>
+                <button type="button" onclick="confirmarCambioDisponibilidad(this)">Cambiar Disponibilidad</button>
             </form>
         </div>
     <?php endforeach; ?>
+
+    <script>
+        function confirmarCambioDisponibilidad(button) {
+            Swal.fire({
+                title: '¿Cambiar Disponibilidad?',
+                text: "¿Estás seguro de que deseas cambiar la disponibilidad de esta habitación?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, cambiar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    const form = button.closest('form');
+                    form.submit();
+                }
+            });
+        }
+    </script>
 </body>
 </html>

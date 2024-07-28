@@ -24,6 +24,7 @@ $personal = $controlHotel->personal->getAllPersonal();
     <title>CRUD de Personal</title>
     <link rel="stylesheet" type="text/css" href="css/stylesClientes.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <h1>Personal</h1>
@@ -71,9 +72,9 @@ $personal = $controlHotel->personal->getAllPersonal();
                     echo "</form>";
                     echo "</td>";
                     echo "<td>";
-                    echo "<form method='post' action=''>";
+                    echo "<form method='post' action='' class='form-eliminar'>";
                     echo "<input type='hidden' name='dniEliminar' value='{$row['dni']}'>";
-                    echo "<button type='submit' name='eliminar' class='boton-eliminar'><i class='material-icons'>delete</i> Eliminar</button>";
+                    echo "<button type='button' class='boton-eliminar' onclick='confirmarEliminacion(this)'><i class='material-icons'>delete</i> Eliminar</button>";
                     echo "</form>";
                     echo "</td>";
 
@@ -85,5 +86,25 @@ $personal = $controlHotel->personal->getAllPersonal();
             ?>
         </tbody>
     </table>
+
+    <script>
+    function confirmarEliminacion(button) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas eliminar este personal?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, enviar el formulario
+                const form = button.closest('form');
+                form.insertAdjacentHTML('beforeend', '<input type="hidden" name="eliminar" value="1">');
+                form.submit();
+            }
+        });
+    }
+    </script>
 </body>
 </html>

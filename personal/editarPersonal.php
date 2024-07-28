@@ -5,7 +5,7 @@ require_once("../ControlHotel.php");
 $controlHotel = new ClaseHotel("bd_hotel");
 
 // Verificar si se ha enviado el formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["actualizar"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirmar_actualizar"])) {
     // Obtener los datos del formulario y actualizar el cliente
     $controlHotel->personal->actualizarPersonal(
         $_POST["dniActualizar"],
@@ -40,9 +40,10 @@ if (isset($_POST['dniEditar'])) {
     <meta charset="UTF-8">
     <title>Editar Personal</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <form method="post" action="">
+    <form id="personal-form" method="post" action="">
         <h2>Actualizar Personal</h2>
         
         <label for="dniActualizar">DNI del Personal a Actualizar:</label>
@@ -64,9 +65,54 @@ if (isset($_POST['dniEditar'])) {
         <input type="text" name="nuevoHorario" value="<?= $controlHotel->personal->getHorario(); ?>" required>
 
         <label for="nuevaContraseña">Nueva Contraseña:</label>
-        <input type="text" name="nuevaContraseña" value="<?= $controlHotel->personal->getContraseña(); ?>" required>
+        <input type="text" name="nuevaContraseña" maxlength="6" value="<?= $controlHotel->personal->getContraseña(); ?>" required>
         
-        <button type="submit" name="actualizar">Actualizar Personal</button>
+        <button type="submit" id="actualizar-btn">Actualizar Personal</button>
+        <button type="button" name="cancelar" class='boton-cancelar' id="cancelar-btn">Cancelar</button>
+        <input type="hidden" name="confirmar_actualizar">
     </form>
+    <script>
+        document.getElementById('actualizar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        const form = document.getElementById('personal-form');
+        if (form.checkValidity()) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas actualizar este personal?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, actualizar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    form.submit();
+                }
+            });
+        } else {
+            // Si los campos requeridos no son válidos, mostrar la validación del navegador
+            form.reportValidity();
+        }
+    });
+
+    document.getElementById('cancelar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cancelar la operación?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cancelar',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirigir a la página de clientes
+                window.location.href = "../indexHotel.php?page=personal";
+            }
+        });
+    });
+    </script>
 </body>
 </html>

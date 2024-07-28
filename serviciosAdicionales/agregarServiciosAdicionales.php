@@ -5,7 +5,7 @@ require_once("../ControlHotel.php");
 $controlHotel = new ClaseHotel("bd_hotel");
 
 // Lógica del controlador
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["agregar"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirmar_agregar"])) {
     // Agregar servicio adicional
     $tipoServicioId = $_POST["tipoServicio"];
     $cantidad = $_POST["cantidad"];
@@ -29,9 +29,10 @@ $personal = $controlHotel->personal->getAllPersonal();
     <meta charset="UTF-8">
     <title>Agregar Servicio Adicional</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <form method="post" action="">
+    <form id="servicios-adicionales-form" method="post" action="">
         <h2>Agregar Servicio Adicional</h2>
         
         <label for="tipoServicio">Tipo de Servicio:</label>
@@ -55,7 +56,52 @@ $personal = $controlHotel->personal->getAllPersonal();
             ?>
         </select>
 
-        <button type="submit" name="agregar">Agregar Servicio Adicional</button>
+        <button type="button" id="agregar-btn">Agregar Servicio Adicional</button>
+        <button type="button" name="cancelar" class='boton-cancelar' id="cancelar-btn">Cancelar</button>
+        <input type="hidden" name="confirmar_agregar">
     </form>
+    <script>
+    document.getElementById('agregar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        const form = document.getElementById('servicios-adicionales-form');
+        if (form.checkValidity()) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas agregar este servicio adicional?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, agregar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    form.submit();
+                }
+            });
+        } else {
+            // Si los campos requeridos no son válidos, mostrar la validación del navegador
+            form.reportValidity();
+        }
+    });
+
+    document.getElementById('cancelar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cancelar la operación?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cancelar',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirigir a la página de clientes
+                window.location.href = "../indexHotel.php?page=serviciosAdicionales";
+            }
+        });
+    });
+    </script>
 </body>
 </html>

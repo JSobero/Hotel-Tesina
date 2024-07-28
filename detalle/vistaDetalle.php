@@ -24,6 +24,7 @@ $detallesTransaccion = $controlHotel->detalleTransaccion->iniciarDetalleTransacc
     <title>CRUD de Detalles de Transacción</title>
     <link rel="stylesheet" type="text/css" href="css/stylesClientes.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <h1>Detalles de Transacción</h1>
@@ -43,9 +44,8 @@ $detallesTransaccion = $controlHotel->detalleTransaccion->iniciarDetalleTransacc
                 <th>Total</th>
                 <th>Fecha</th>
                 <th>Método de Pago</th>
-                <td>
                 <th>Acciones</th>
-                </td>
+                <th>Imprimir</th>
             </tr>
         </thead>
         <tbody>
@@ -72,16 +72,16 @@ $detallesTransaccion = $controlHotel->detalleTransaccion->iniciarDetalleTransacc
                     // Formulario para eliminar
                     echo "<form method='post' action=''>";
                     echo "<input type='hidden' name='detalleIdEliminar' value='{$detalleTransaccion['detalle_id']}'>";
-                    echo "<button type='submit' name='eliminar' class='boton-eliminar'><i class='material-icons'>delete</i> Eliminar</button>";
+                    echo "<button type='button' class='boton-eliminar' onclick='confirmarEliminacion(this)'><i class='material-icons'>delete</i> Eliminar</button>";
                     echo "</form>";
                     echo "</td>";
 
+                    // Formulario para imprimir
                     echo "<td>";
-                    echo "<form method='post' action='detalle/boleta.php' target='_blank'>";
+                    echo "<form method='post' action='detalle/boleta.php' target='_blank' class='form-imprimir'>";
                     echo "<input type='hidden' name='detalle_id' value='{$detalleTransaccion['detalle_id']}'>";
-                    echo "<button type='submit' name='imprimir' class='boton boton-imprimir'><i class='material-icons'>print</i> Imprimir</button>";
+                    echo "<button type='button' name='imprimir' class='boton boton-imprimir' onclick='confirmarImpresion(this)'><i class='material-icons'>print</i> Imprimir</button>";
                     echo "</form>";
-
                     echo "</td>";
 
                     echo "</tr>";
@@ -91,10 +91,41 @@ $detallesTransaccion = $controlHotel->detalleTransaccion->iniciarDetalleTransacc
         </tbody>
     </table>
     <script>
-        // Función para abrir la ventana de impresión
-        function imprimirBoleta(detalleId) {
-            window.open('detalle/boleta.php?detalle_id=' + detalleId, '_blank');
+        function confirmarEliminacion(button) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas eliminar este detalle de transacción?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    const form = button.closest('form');
+                    form.insertAdjacentHTML('beforeend', '<input type="hidden" name="eliminar" value="1">');
+                    form.submit();
+                }
+            });
+        }
+
+        function confirmarImpresion(button) {
+            Swal.fire({
+                title: '¿Imprimir Boleta?',
+                text: "¿Deseas imprimir la boleta para este detalle de transacción?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, imprimir',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    const form = button.closest('form');
+                    form.submit();
+                }
+            });
         }
     </script>
+    
 </body>
 </html>

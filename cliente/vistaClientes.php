@@ -43,8 +43,9 @@ $clientes = $controlHotel->clientes->getAllClientes();
                 <th>Apellidos</th>
                 <th>DNI</th>
                 <th>Teléfono</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <td>
+                <th>Acciones</th>
+                </td>
             </tr>
         </thead>
         <tbody>

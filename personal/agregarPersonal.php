@@ -5,7 +5,7 @@ require_once("../ControlHotel.php");
 $controlHotel = new ClaseHotel("bd_hotel");
 
 // Lógica del controlador
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["agregar"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirmar_agregar"])) {
     // Agregar cliente
     $nombres = $_POST["nombres"];
     $apellidos = $_POST["apellidos"];
@@ -30,9 +30,10 @@ $personal = $controlHotel->personal->getAllPersonal();
     <meta charset="UTF-8">
     <title>Editar Personal</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <form method="post" action="">
+    <form id="personal-form" method="post" action="">
         <h2>Agregar Personal</h2>
         <label for="nombres">Nombres:</label>
         <input type="text" name="nombres" required>
@@ -41,7 +42,7 @@ $personal = $controlHotel->personal->getAllPersonal();
         <input type="text" name="apellidos" required>
 
         <label for="dni">DNI:</label>
-        <input type="text" name="dni" required>
+        <input type="text" name="dni" maxlength="8" required>
 
         <label for="correo">Correo:</label>
         <input type="text" name="correo" required>
@@ -50,12 +51,57 @@ $personal = $controlHotel->personal->getAllPersonal();
         <input type="text" name="rol" required>
 
         <label for="horario_trabajo">Horario:</label>
-        <input type="text" name="horario_trabajo" required>
+        <input type="text" name="horario_trabajo"  required>
 
         <label for="contraseña">Contraseña:</label>
-        <input type="text" name="contraseña" required>
+        <input type="text" name="contraseña" maxlength="6" required>
 
-        <button type="submit" name="agregar">Agregar Personal</button>
+        <button type="submit" id="agregar-btn">Agregar Personal</button>
+        <button type="button" name="cancelar" class='boton-cancelar' id="cancelar-btn">Cancelar</button>
+        <input type="hidden" name="confirmar_agregar">
     </form>
+    <script>
+    document.getElementById('agregar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        const form = document.getElementById('personal-form');
+        if (form.checkValidity()) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas agregar este personal?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, agregar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    form.submit();
+                }
+            });
+        } else {
+            // Si los campos requeridos no son válidos, mostrar la validación del navegador
+            form.reportValidity();
+        }
+    });
+
+    document.getElementById('cancelar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cancelar la operación?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cancelar',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirigir a la página de clientes
+                window.location.href = "../indexHotel.php?page=personal";
+            }
+        });
+    });
+    </script>
 </body>
 </html>

@@ -24,6 +24,7 @@ $reservas = $controlHotel->reserva->getAllReservas();
     <title>CRUD de Reserva</title>
     <link rel="stylesheet" type="text/css" href="css/stylesClientes.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <h1>Reservas</h1>
@@ -68,7 +69,7 @@ $reservas = $controlHotel->reserva->getAllReservas();
                     echo "<td>";
                     echo "<form method='post' action=''>";
                     echo "<input type='hidden' name='reservaIdEliminar' value='{$row['reservas_id']}'>";
-                    echo "<button type='submit' name='eliminar' class='boton-eliminar'><i class='material-icons'>delete</i> Eliminar</button>";
+                    echo "<button type='button' class='boton-eliminar' class='boton-eliminar' onclick='confirmarEliminacion(this)'><i class='material-icons'>delete</i> Eliminar</button>";
                     echo "</form>";
                     echo "</td>";
 
@@ -80,5 +81,25 @@ $reservas = $controlHotel->reserva->getAllReservas();
             ?>
         </tbody>
     </table>
+
+    <script>
+    function confirmarEliminacion(button) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas eliminar esta reserva?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, enviar el formulario
+                const form = button.closest('form');
+                form.insertAdjacentHTML('beforeend', '<input type="hidden" name="eliminar" value="1">');
+                form.submit();
+            }
+        });
+    }
+    </script>
 </body>
 </html>

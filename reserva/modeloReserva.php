@@ -79,7 +79,7 @@ class ClaseReserva
     {
         $sqlEliminarReserva = "DELETE FROM reservas WHERE reservas_id='$reservas_id'";
         if (mysqli_query($this->cn, $sqlEliminarReserva)) {
-            echo "Reserva eliminada con éxito";
+            //echo "Reserva eliminada con éxito";
         } else {
             echo "Error eliminando reserva";
         }
