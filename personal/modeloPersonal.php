@@ -108,13 +108,23 @@ class ClasePersonal {
     }
 
     function eliminarPersonal($xdni) {
-        $sqlEliminar = "DELETE FROM personal WHERE dni='$xdni'";
-        if (mysqli_query($this->cn, $sqlEliminar)) {
-            //echo "<script>alert('personal eliminado con exito');</script>";
-        } else {
-            echo "Error eliminando personal";
+        try {
+            $sqlEliminar = "DELETE FROM personal WHERE dni='$xdni'";
+            if (!mysqli_query($this->cn, $sqlEliminar)) {
+                throw new Exception("Error eliminando personal");
+            }
+        } catch (Exception $e) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al intentar eliminar el personal. Por favor, inténtalo de nuevo.',
+                    showConfirmButton: true
+                });
+            </script>";
         }
     }
+    
 
     function getAllPersonal() {
         $consulta = "SELECT * FROM personal";

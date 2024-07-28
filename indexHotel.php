@@ -7,7 +7,7 @@ if (isset($_GET['logout'])) {
     session_destroy();
 
     // Redirigir al login
-    header("Location: indexLogin.php");
+    header("Location: index.php");
     exit();
 }
 ?>

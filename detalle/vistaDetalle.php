@@ -86,7 +86,9 @@ $detallesTransaccion = $controlHotel->detalleTransaccion->iniciarDetalleTransacc
 
                     echo "</tr>";
                 }
-            } 
+            } else {
+                echo "<tr><td colspan='5'>No hay detalle.</td></tr>";
+            }
             ?>
         </tbody>
     </table>

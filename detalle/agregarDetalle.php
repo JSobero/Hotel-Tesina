@@ -6,7 +6,7 @@ $controlHotel = new ClaseHotel("bd_hotel");
 
 // Lógica del controlador para procesar el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["agregarDetalleTransaccion"])) {
+    if (isset($_POST["confirmar_agregar"])) {
         // Recuperar datos del formulario
         $reservas_id = $_POST["reservas_id"];
         $servicios_adicionales_id = $_POST["servicios_adicionales_id"];
@@ -78,12 +78,12 @@ function obtenerPrecioServicio($controlHotel, $servicios_adicionales_id) {
     <meta charset="UTF-8">
     <title>Agregar Detalle de Transacción</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <h1>Agregar Detalle de Transacción</h1>
-
     <!-- Formulario para Agregar Detalle de Transacción -->
-    <form method="post" action="">
+    <form id="detalle-form" method="post" action="">
+        <h1>Agregar Detalle de Transacción</h1>
         <label for="reservas_id">ID de Reserva:</label>
         <select name="reservas_id" required>
             <?php
@@ -119,8 +119,52 @@ function obtenerPrecioServicio($controlHotel, $servicios_adicionales_id) {
             <option value="Tarjeta">Tarjeta</option>
         </select>
 
-        <button type="submit" name="agregarDetalleTransaccion">Agregar Detalle de Transacción</button>
+        <button type="button" id="agregar-btn">Agregar Detalle de Transacción</button>
+        <button type="button" name="cancelar" class='boton-cancelar' id="cancelar-btn">Cancelar</button>
+        <input type="hidden" name="confirmar_agregar">
     </form>
+    <script>
+    document.getElementById('agregar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
 
+        const form = document.getElementById('detalle-form');
+        if (form.checkValidity()) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas agregar este Detalle?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, agregar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si el usuario confirma, enviar el formulario
+                    form.submit();
+                }
+            });
+        } else {
+            // Si los campos requeridos no son válidos, mostrar la validación del navegador
+            form.reportValidity();
+        }
+    });
+
+    document.getElementById('cancelar-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevenir la acción por defecto
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¿Deseas cancelar la operación?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cancelar',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirigir a la página de clientes
+                window.location.href = "../indexHotel.php?page=detalleTransacciones";
+            }
+        });
+    });
+    </script>
 </body>
 </html>

@@ -97,25 +97,32 @@ class ClaseServicioAdicional
         }
     }
 
-    function eliminarServicioAdicional($servicios_adicionales_id)
-    {
-        $sqlEliminarServicioAdicional = "DELETE FROM serviciosadicionales WHERE servicios_adicionales_id=?";
-        $stmt = mysqli_prepare($this->cn, $sqlEliminarServicioAdicional);
-
-        // Verifica si la preparación de la consulta fue exitosa
-        if ($stmt) {
-            // Vincula los parámetros
+    function eliminarServicioAdicional($servicios_adicionales_id) {
+        try {
+            $sqlEliminarServicioAdicional = "DELETE FROM serviciosadicionales WHERE servicios_adicionales_id=?";
+            $stmt = mysqli_prepare($this->cn, $sqlEliminarServicioAdicional);
+    
+            if (!$stmt) {
+                throw new Exception("Error en la preparación de la consulta");
+            }
+    
             mysqli_stmt_bind_param($stmt, "i", $servicios_adicionales_id);
-
-            // Ejecuta la consulta
-            $result = mysqli_stmt_execute($stmt);
-
-            // Cierra el statement
+    
+            if (!mysqli_stmt_execute($stmt)) {
+                throw new Exception("Error al ejecutar la consulta");
+            }
+    
             mysqli_stmt_close($stmt);
-
-            return $result;
-        } else {
-            // Manejar el error de preparación de la consulta
+            return true;
+        } catch (Exception $e) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al intentar eliminar el servicio adicional. Por favor, inténtalo de nuevo.',
+                    showConfirmButton: true
+                });
+            </script>";
             return false;
         }
     }

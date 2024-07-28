@@ -75,13 +75,21 @@ class ClaseReserva
         }
     }
 
-    function eliminarReserva($reservas_id)
-    {
-        $sqlEliminarReserva = "DELETE FROM reservas WHERE reservas_id='$reservas_id'";
-        if (mysqli_query($this->cn, $sqlEliminarReserva)) {
-            //echo "Reserva eliminada con éxito";
-        } else {
-            echo "Error eliminando reserva";
+    function eliminarReserva($reservas_id) {
+        try {
+            $sqlEliminarReserva = "DELETE FROM reservas WHERE reservas_id='$reservas_id'";
+            if (!mysqli_query($this->cn, $sqlEliminarReserva)) {
+                throw new Exception("Error eliminando reserva");
+            }
+        } catch (Exception $e) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al intentar eliminar la reserva. Por favor, inténtalo de nuevo.',
+                    showConfirmButton: true
+                });
+            </script>";
         }
     }
 

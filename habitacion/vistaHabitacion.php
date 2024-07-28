@@ -48,6 +48,7 @@
         ">
             <h2>Habitación <?php echo $habitacion['numero_habitacion']; ?></h2>
             <p>Tipo: <?php echo $habitacion['nombre_tipo']; ?></p>
+            <p>Precio: S/.<?php echo $habitacion['precio_tipo']; ?></p>
             <p>Disponibilidad: <?php echo $habitacion['disponibilidad']; ?></p>
             
             <!-- Botón Cambiar Disponibilidad -->

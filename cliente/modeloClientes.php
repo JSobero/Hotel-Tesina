@@ -84,11 +84,20 @@ class ClaseClientes {
     }
 
     function eliminarCliente($xdni) {
-        $sqlEliminar = "DELETE FROM clientes WHERE dni='$xdni'";
-        if (mysqli_query($this->cn, $sqlEliminar)) {
-            //echo "<script>alert('Cliente eliminado con exito');</script>";
-        } else {
-            echo "Error eliminando cliente";
+        try {
+            $sqlEliminar = "DELETE FROM clientes WHERE dni='$xdni'";
+            if (!mysqli_query($this->cn, $sqlEliminar)) {
+                throw new Exception("Error eliminando cliente");
+            }
+        } catch (Exception $e) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Hubo un problema al intentar eliminar el cliente. Por favor, inténtalo de nuevo.',
+                    showConfirmButton: true
+                });
+            </script>";
         }
     }
 

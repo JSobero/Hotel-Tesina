@@ -16,10 +16,10 @@
     <h2>Iniciar Sesión</h2>
     <form action="login_process.php" method="post">
         <label for="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" required>
+        <input type="text" id="dni" name="dni" maxlength="8" required>
 
         <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" required>
+        <input type="password" id="contraseña" name="contraseña" maxlength="6" required>
 
         <button type="submit">Iniciar Sesión</button>
     </form>
