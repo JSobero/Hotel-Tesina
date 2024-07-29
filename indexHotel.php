@@ -34,6 +34,7 @@ if (isset($_GET['logout'])) {
     </div>
     <div class="categories">
         <ul>
+            <li class='sidebar'><a href="indexHotel.php?page=home"><i class="material-icons">home</i> Principal</a></li>
             <li class='sidebar'><a href="indexHotel.php?page=clientes"><i class="material-icons">person</i> Clientes</a></li>
             <li class='sidebar'><a href="indexHotel.php?page=habitacion"><i class="material-icons">hotel</i> Habitaciones</a></li>
             <li class='sidebar'><a href="indexHotel.php?page=reserva"><i class="material-icons">event</i> Reservas</a></li>
@@ -59,6 +60,9 @@ if (isset($_GET['logout'])) {
 
     // Incluir la vista correspondiente según la página solicitada
     switch ($page) {
+        case 'home':
+            include('home/vistaHome.php');
+            break;
         case 'clientes':
             include('cliente/vistaClientes.php');
             break;

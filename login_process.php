@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
             showConfirmButton: false,
             timer: 1500
         }).then(() => {
-            window.location.href = 'indexHotel.php';
+            window.location.href = 'indexHotel.php?page=home';
         });";
     } else {
         // Contraseña incorrecta
