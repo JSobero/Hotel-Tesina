@@ -6,6 +6,8 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #2c3e50; /* Cambia este color según tus preferencias */
+    background-image: url('../image/hotel.jpg');
+    background-size: cover;
 }
 
 .login-container {

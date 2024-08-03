@@ -21,6 +21,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Sistema de Hotel</title>
+    <link rel="icon" href="image/logo.png" type="image/x-icon">
 </head>
 <body>
 

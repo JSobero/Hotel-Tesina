@@ -29,6 +29,7 @@ $reserva = $controlHotel->reserva->getAllReservas();
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="../image/logo.png" type="image/x-icon">
 </head>
 <body>
 

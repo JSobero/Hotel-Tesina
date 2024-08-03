@@ -28,6 +28,7 @@ $clientes = $controlHotel->clientes->getAllClientes();
     <title>Agregar Cliente</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="../image/logo.png" type="image/x-icon">
 </head>
 <body>
     <form id="cliente-form" method="post" action="">

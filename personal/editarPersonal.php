@@ -41,6 +41,7 @@ if (isset($_POST['dniEditar'])) {
     <title>Editar Personal</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="../image/logo.png" type="image/x-icon">
 </head>
 <body>
     <form id="personal-form" method="post" action="">

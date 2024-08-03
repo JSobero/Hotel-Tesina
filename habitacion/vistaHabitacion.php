@@ -6,6 +6,7 @@
     <title>Lista de Habitaciones</title>
     <link rel="stylesheet" type="text/css" href="css/stylesClientes.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="../image/logo.png" type="image/x-icon">
 </head>
 <body>
     <h1>Lista de Habitaciones</h1>
@@ -43,7 +44,7 @@
         <div class="habitacion-card" style="
             <?php
                 // Establecer el color de fondo según la disponibilidad
-                echo ($habitacion['disponibilidad'] == 'disponible') ? 'background-color: #8CE88C;' : 'background-color: #FF6F6F;';
+                echo ($habitacion['disponibilidad'] == 'disponible') ? 'background-color: #28a745;' : 'background-color: #dc3545;';
             ?>
         ">
             <h2>Habitación <?php echo $habitacion['numero_habitacion']; ?></h2>

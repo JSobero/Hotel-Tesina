@@ -79,6 +79,7 @@ function obtenerPrecioServicio($controlHotel, $servicios_adicionales_id) {
     <title>Agregar Detalle de Transacción</title>
     <link rel="stylesheet" type="text/css" href="../css/stylesClientes.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="icon" href="../image/logo.png" type="image/x-icon">
 </head>
 <body>
     <!-- Formulario para Agregar Detalle de Transacción -->

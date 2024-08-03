@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styleslogin.css">
+    <link rel="stylesheet" href="css/stylesLogin.css">
     <title>Iniciar Sesión - Sistema de Hotel</title>
+    <link rel="icon" href="image/logo.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
