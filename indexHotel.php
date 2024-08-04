@@ -41,7 +41,7 @@ if (isset($_GET['logout'])) {
             <li class='sidebar'><a href="indexHotel.php?page=reserva"><i class="material-icons">event</i> Reservas</a></li>
             <li class='sidebar'><a href="indexHotel.php?page=serviciosAdicionales"><i class="material-icons">room_service</i> Servicios Adicionales</a></li>
             <li class='sidebar'><a href="indexHotel.php?page=detalleTransacciones"><i class="material-icons">receipt_long</i> Transacciones</a></li>
-
+            <li class='sidebar'><a href="indexHotel.php?page=aprobarReserva"><i class="material-icons">receipt_long</i> Aprobar Reserva</a></li>
             <?php
             // Verificar el rol para mostrar o no el enlace al área de personal
             if ($_SESSION['rol'] == 'administrador') {
@@ -82,6 +82,9 @@ if (isset($_GET['logout'])) {
             break;
         case 'detalleTransacciones':
             include('detalle/vistaDetalle.php');
+            break;
+        case 'aprobarReserva':
+            include('aprobacion/aprobar_reserva.php');
             break;
         default:
             // Página principal por defecto

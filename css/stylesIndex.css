@@ -24,6 +24,7 @@ h1 {
     /*max-width: 250px; /* Ancho máximo opcional */
     background-color: #333;
     padding: 20px;
+    margin-bottom: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     /*box-sizing: border-box; /* Incluir padding y border en el ancho total */
 }
