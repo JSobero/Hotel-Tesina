@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-07-2024 a las 06:53:53
+-- Tiempo de generación: 05-08-2024 a las 00:08:48
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -123,6 +123,20 @@ CREATE TABLE `reservas` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reservas_pendientes`
+--
+
+CREATE TABLE `reservas_pendientes` (
+  `reserva_id` int(11) NOT NULL,
+  `clientes_id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `habitaciones_id` int(11) NOT NULL,
+  `estado` varchar(20) DEFAULT 'pendiente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `serviciosadicionales`
 --
 
@@ -221,6 +235,14 @@ ALTER TABLE `reservas`
   ADD KEY `personal_id` (`personal_id`);
 
 --
+-- Indices de la tabla `reservas_pendientes`
+--
+ALTER TABLE `reservas_pendientes`
+  ADD PRIMARY KEY (`reserva_id`),
+  ADD KEY `clientes_id` (`clientes_id`),
+  ADD KEY `habitaciones_id` (`habitaciones_id`);
+
+--
 -- Indices de la tabla `serviciosadicionales`
 --
 ALTER TABLE `serviciosadicionales`
@@ -275,10 +297,16 @@ ALTER TABLE `reservas`
   MODIFY `reservas_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `reservas_pendientes`
+--
+ALTER TABLE `reservas_pendientes`
+  MODIFY `reserva_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `serviciosadicionales`
 --
 ALTER TABLE `serviciosadicionales`
-  MODIFY `servicios_adicionales_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `servicios_adicionales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipohabitacion`
@@ -316,6 +344,13 @@ ALTER TABLE `reservas`
   ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`),
   ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`habitaciones_id`) REFERENCES `habitaciones` (`habitaciones_id`),
   ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`personal_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `reservas_pendientes`
+--
+ALTER TABLE `reservas_pendientes`
+  ADD CONSTRAINT `reservas_pendientes_ibfk_1` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`),
+  ADD CONSTRAINT `reservas_pendientes_ibfk_2` FOREIGN KEY (`habitaciones_id`) REFERENCES `habitaciones` (`habitaciones_id`);
 
 --
 -- Filtros para la tabla `serviciosadicionales`
